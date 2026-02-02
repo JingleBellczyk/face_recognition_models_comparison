@@ -1,0 +1,256 @@
+//apply plugin: 'com.android.application'
+//apply plugin: 'kotlin-android'
+//apply plugin: 'kotlin-kapt'
+//apply plugin: "androidx.navigation.safeargs"
+//apply plugin: 'de.undercouch.download'
+//
+//android {
+//    namespace 'com.google.mediapipe.examples.facedetection'
+//    compileSdk 34
+//
+//    defaultConfig {
+//        applicationId "com.google.mediapipe.examples.facedetection"
+//        minSdk 24
+//        targetSdk 34
+//        versionCode 1
+//        versionName "1.0"
+//
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//    }
+//
+//    dataBinding {
+//        enabled = true
+//    }
+//
+//    compileOptions {
+//        sourceCompatibility rootProject.ext.java_version
+//        targetCompatibility rootProject.ext.java_version
+//    }
+//
+//    kotlinOptions {
+//        jvmTarget = rootProject.ext.java_version
+//    }
+//
+//    buildTypes {
+//        release {
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//        }
+//    }
+//
+//    buildFeatures {
+//        viewBinding true
+//    }
+//    androidResources {
+//        noCompress 'tflite'
+//    }
+//    //dodalam dla drugiego modelu facenet_final.tflite
+//    packagingOptions {
+//        pickFirst 'lib/x86/libtensorflowlite_jni.so'
+//        pickFirst 'lib/x86_64/libtensorflowlite_jni.so'
+//        pickFirst 'lib/armeabi-v7a/libtensorflowlite_jni.so'
+//        pickFirst 'lib/arm64-v8a/libtensorflowlite_jni.so'
+//    }
+//}
+//
+//// import DownloadModels task
+//project.ext.ASSET_DIR = projectDir.toString() + '/src/main/assets'
+//
+//// Download default models; if you wish to use your own models then
+//// place them in the "assets" directory and comment out this line.
+//apply from: 'download_models.gradle'
+//
+//dependencies {
+//
+//    //style
+//    implementation 'com.google.android.material:material:1.12.0'
+//
+//    // Kotlin lang
+//    implementation 'androidx.core:core-ktx:1.6.0'
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+//    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
+//
+//    // App compat and UI things
+//    implementation 'androidx.appcompat:appcompat:1.3.1'
+//    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+//    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+//    implementation 'com.google.android.material:material:1.0.0'
+//    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+//    implementation 'androidx.fragment:fragment-ktx:1.5.4'
+//    // czy MoblieFaceNet zaakceptuje?
+////    implementation 'org.tensorflow:tensorflow-lite:2.12.0'
+//    //dodalam start
+//    implementation 'org.tensorflow:tensorflow-lite:2.14.0'
+//    implementation 'org.tensorflow:tensorflow-lite-gpu:2.14.0'
+//    implementation 'org.tensorflow:tensorflow-lite-support:0.4.4'
+//    // To może być potrzebne dla FaceNet
+//    implementation 'org.tensorflow:tensorflow-lite-select-tf-ops:2.14.0'
+//    //dodalam koniec
+//    implementation("androidx.room:room-runtime:2.8.4")
+//    implementation("androidx.room:room-ktx:2.8.4")
+//    kapt("androidx.room:room-compiler:2.8.4")
+//
+//
+//    // Navigation library
+//    def nav_version = "2.3.5"
+//    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+//    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+//
+//    // CameraX core library
+//    def camerax_version = '1.4.2'
+//    implementation "androidx.camera:camera-core:$camerax_version"
+//
+//    // CameraX Camera2 extensions
+//    implementation "androidx.camera:camera-camera2:$camerax_version"
+//
+//    // CameraX Lifecycle library
+//    implementation "androidx.camera:camera-lifecycle:$camerax_version"
+//
+//    // CameraX View class
+//    implementation "androidx.camera:camera-view:$camerax_version"
+//
+//    //WindowManager
+//    implementation 'androidx.window:window:1.0.0-alpha09'
+//
+//    // Unit testing
+//    testImplementation 'androidx.test.ext:junit:1.1.3'
+//    testImplementation 'androidx.test:rules:1.4.0'
+//    testImplementation 'androidx.test:runner:1.4.0'
+//    testImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+//    testImplementation 'org.robolectric:robolectric:4.4'
+//
+//    // Instrumented testing
+//    androidTestImplementation "androidx.test.ext:junit:1.1.3"
+//    androidTestImplementation "androidx.test:core:1.4.0"
+//    androidTestImplementation "androidx.test:rules:1.4.0"
+//    androidTestImplementation "androidx.test:runner:1.4.0"
+//    androidTestImplementation "androidx.test.espresso:espresso-core:3.4.0"
+//
+////    implementation 'com.google.mediapipe:tasks-vision:0.10.29'
+//    //dodalam dla nowgo modelu
+//    implementation('com.google.mediapipe:tasks-vision:0.10.29') {
+//        exclude group: 'org.tensorflow', module: 'tensorflow-lite-runtime'
+//    }
+//
+//}
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs"
+apply plugin: 'de.undercouch.download'
+
+android {
+    namespace 'com.google.mediapipe.examples.facedetection'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.google.mediapipe.examples.facedetection"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility rootProject.ext.java_version
+        targetCompatibility rootProject.ext.java_version
+    }
+
+    kotlinOptions {
+        jvmTarget = rootProject.ext.java_version
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+    androidResources {
+        noCompress 'tflite'
+    }
+}
+
+// import DownloadModels task
+project.ext.ASSET_DIR = projectDir.toString() + '/src/main/assets'
+
+// Download default models; if you wish to use your own models then
+// place them in the "assets" directory and comment out this line.
+apply from: 'download_models.gradle'
+
+dependencies {
+
+    //style
+    implementation 'com.google.android.material:material:1.12.0'
+
+    // Kotlin lang
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
+
+    // App compat and UI things
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+    implementation 'androidx.fragment:fragment-ktx:1.5.4'
+    // czy MoblieFaceNet zaakceptuje?
+    implementation 'org.tensorflow:tensorflow-lite:2.12.0'
+    implementation("androidx.room:room-runtime:2.8.4")
+    implementation("androidx.room:room-ktx:2.8.4")
+    kapt("androidx.room:room-compiler:2.8.4")
+
+
+    // Navigation library
+    def nav_version = "2.3.5"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // CameraX core library
+    def camerax_version = '1.4.2'
+    implementation "androidx.camera:camera-core:$camerax_version"
+
+    // CameraX Camera2 extensions
+    implementation "androidx.camera:camera-camera2:$camerax_version"
+
+    // CameraX Lifecycle library
+    implementation "androidx.camera:camera-lifecycle:$camerax_version"
+
+    // CameraX View class
+    implementation "androidx.camera:camera-view:$camerax_version"
+
+    //WindowManager
+    implementation 'androidx.window:window:1.0.0-alpha09'
+
+    // Unit testing
+    testImplementation 'androidx.test.ext:junit:1.1.3'
+    testImplementation 'androidx.test:rules:1.4.0'
+    testImplementation 'androidx.test:runner:1.4.0'
+    testImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    testImplementation 'org.robolectric:robolectric:4.4'
+
+    // Instrumented testing
+    androidTestImplementation "androidx.test.ext:junit:1.1.3"
+    androidTestImplementation "androidx.test:core:1.4.0"
+    androidTestImplementation "androidx.test:rules:1.4.0"
+    androidTestImplementation "androidx.test:runner:1.4.0"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.4.0"
+
+    implementation 'com.google.mediapipe:tasks-vision:0.10.29'
+
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    // Jeśli chcesz łatwo parsować JSONa (opcjonalnie)
+    implementation("org.json:json:20231013")
+}

@@ -1,0 +1,63 @@
+### Python ###
+**/__pycache__/
+**/*.py[cod]
+**/*$py.class
+**/venv/
+**/.venv/
+**/env/
+**/ENV/
+**/dist/
+**/*.egg-info/
+
+### Kotlin / JVM / Gradle ###
+**/build/
+**/bin/
+**/out/
+**/.gradle/
+**/gradle-app.setting
+!**/gradle-wrapper.jar
+**/*.log
+
+### IDEs ###
+**/.idea/
+**/*.iml
+**/*.iws
+**/.vscode/
+
+### Machine Learning & Face Recognition ###
+# Models and Weights
+**/*.h5
+**/*.pb
+**/*.pth
+**/*.pt
+**/*.onnx
+**/*.weights
+**/*.dat
+**/*.model
+**/*.xml
+**/*.bin
+
+# Data and Embeddings
+**/datasets/
+**/embeddings/
+**/preprocessing/images/
+**/*.npy
+**/*.npz
+**/*.pickle
+**/*.pkl
+
+# Training Logs
+**/lightning_logs/
+**/runs/
+
+### System & Archives ###
+**/.DS_Store
+**/Thumbs.db
+**/*.zip
+**/*.tar.gz
+**/*.iso
+python/preprocessing/MAAD_Face.csv
+**/*.png
+**/*.jpg
+**/*.tflite
+

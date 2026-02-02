@@ -1,0 +1,10 @@
+/images
+/data
+__pycache__/
+venv/
+.venv/
+.venv_3_10
+env/
+.env/
+trenowanie.py
+Untitled5.ipynb
